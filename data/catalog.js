@@ -1,0 +1,335 @@
+export const BRAND_INFO = {
+  name: 'NellyKit',
+  tagline: 'Artesanías hechas 100% a mano con amor',
+  artisan: 'Nelly',
+  whatsapp: '+5491134310840',
+  whatsappNumberOnly: '5491134310840',
+  logoDark: '/brand/NellyKit-logo-blanco.png',
+  logoLight: '/brand/NellyKit.png',
+  instagram: 'https://instagram.com/nellykit_artesanias',
+  currency: 'ARS',
+  currencySymbol: '$',
+  paymentMethods: ['Transferencia Bancaria', 'Mercado Pago'],
+  location: 'Buenos Aires, Argentina',
+};
+
+export const INITIAL_CATEGORIES = [
+  {
+    id: 'estuches-de-maquillaje',
+    name: 'Estuches de maquillaje',
+    shortName: 'Portamaquillajes',
+    icon: 'Sparkles',
+    avatar: '/products/C1/cover.jpg',
+    description: 'Neceser y portamaquillajes confeccionados 100% a mano con detalles artesanales de primera calidad.',
+  },
+  {
+    id: 'bolsos-diarios',
+    name: 'Bolsos diarios',
+    shortName: 'Bolsos diarios',
+    icon: 'ShoppingBag',
+    avatar: '/products/A1/cover.png',
+    description: 'Bolsos amplios, confortables y versátiles confeccionados con dedicación para acompañarte en tu día a día.',
+  },
+];
+
+export const INITIAL_PRODUCTS = [
+  // --- Portamaquillajes ---
+  {
+    code: 'C1',
+    categoryId: 'estuches-de-maquillaje',
+    title: 'Portamaquillaje decorado rosa',
+    description: 'Hice este neceser de maquillaje con mis propias manos cuidando cada costura y detalle. Mide 17 cm de largo, ideal para llevar en la cartera o de viaje con tus cosméticos esenciales.',
+    shortDescription: 'Neceser artesanal 17 cm con detalles decorativos florales y cierre reforzado.',
+    stock: true,
+    rating: 5.0,
+    reviewsCount: 28,
+    soldCount: 42,
+    badge: 'MÁS VENDIDO',
+    priceRetailOriginal: 9500,
+    priceRetail: 8000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 21600, unitPrice: 7200, label: '3 unidades' },
+      tier10: { units: 10, total: 68000, unitPrice: 6800, label: '10 unidades' },
+      souvenir20: { units: 20, total: 128000, unitPrice: 6400, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 180000, unitPrice: 6000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/C1/cover.jpg',
+      '/products/C1/photo-1.jpg',
+      '/products/C1/photo-2.jpg',
+      '/products/C1/photo-3.jpg',
+      '/products/C1/photo-4.jpg',
+      '/products/C1/photo-5.jpg',
+    ],
+    video: null,
+    dimensions: '17 cm x 11 cm x 7 cm',
+    features: ['100% hecho a mano', 'Forrería interna lavable', 'Cierre metálico reforzado', 'Costura artesanal'],
+  },
+  {
+    code: 'C2',
+    categoryId: 'estuches-de-maquillaje',
+    title: 'Portamaquillaje decorado canela',
+    description: 'Portacosméticos artesanal confeccionado a mano con tela reforzada y forrería interior de fácil limpieza. Mide 17 cm, tono cálido canela con terminación de diseño.',
+    shortDescription: 'Neceser artesanal 17 cm en tono cálido canela con costura artesanal de alta resistencia.',
+    stock: true,
+    rating: 4.9,
+    reviewsCount: 19,
+    soldCount: 29,
+    badge: '¡ÚLTIMA UNIDAD!',
+    priceRetailOriginal: 9500,
+    priceRetail: 8000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 21600, unitPrice: 7200, label: '3 unidades' },
+      tier10: { units: 10, total: 68000, unitPrice: 6800, label: '10 unidades' },
+      souvenir20: { units: 20, total: 128000, unitPrice: 6400, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 180000, unitPrice: 6000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/C2/cover.jpg',
+      '/products/C2/photo-1.jpg',
+      '/products/C2/photo-2.jpg',
+      '/products/C2/photo-3.jpg',
+    ],
+    video: null,
+    dimensions: '17 cm x 11 cm x 7 cm',
+    features: ['Tela resistente al agua', 'Confección manual', 'Ideal para souvenirs y regalos'],
+  },
+  {
+    code: 'C3',
+    categoryId: 'estuches-de-maquillaje',
+    title: 'Portamaquillaje decorado naranja',
+    description: 'Neceser artesanal con diseño vibrante, costuras reforzadas y terminación premium hecha a mano. Mide 17 cm, perfecto para alegrar tu bolso de todos los días.',
+    shortDescription: 'Estuche vibrante naranja con diseño artesanal exclusivo.',
+    stock: true,
+    rating: 4.8,
+    reviewsCount: 14,
+    soldCount: 18,
+    badge: 'TENDENCIA',
+    priceRetailOriginal: 9500,
+    priceRetail: 8000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 21600, unitPrice: 7200, label: '3 unidades' },
+      tier10: { units: 10, total: 68000, unitPrice: 6800, label: '10 unidades' },
+      souvenir20: { units: 20, total: 128000, unitPrice: 6400, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 180000, unitPrice: 6000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/C3/cover.png',
+      '/products/C3/photo-1.jpg',
+      '/products/C3/photo-2.jpg',
+      '/products/C3/photo-3.jpg',
+    ],
+    video: null,
+    dimensions: '17 cm x 11 cm x 7 cm',
+    features: ['Color vibrante', 'Forrado interior', 'Excelente terminación'],
+  },
+  {
+    code: 'C4',
+    categoryId: 'estuches-de-maquillaje',
+    title: 'Portamaquillaje decorado verde oliva',
+    description: 'Estuche artesanal para maquillaje o accesorios, práctico, liviano y con cierre reforzado de alta durabilidad. Mide 17 cm de largo.',
+    shortDescription: 'Estuche artesanal en verde oliva con textura suave y cierre resistente.',
+    stock: true,
+    rating: 5.0,
+    reviewsCount: 22,
+    soldCount: 35,
+    badge: 'DESTACADO',
+    priceRetailOriginal: 9500,
+    priceRetail: 8000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 21600, unitPrice: 7200, label: '3 unidades' },
+      tier10: { units: 10, total: 68000, unitPrice: 6800, label: '10 unidades' },
+      souvenir20: { units: 20, total: 128000, unitPrice: 6400, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 180000, unitPrice: 6000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/C4/cover.png',
+      '/products/C4/photo-1.jpg',
+      '/products/C4/photo-2.jpg',
+      '/products/C4/photo-3.jpg',
+    ],
+    video: null,
+    dimensions: '17 cm x 11 cm x 7 cm',
+    features: ['Tono verde oliva artesanal', 'Detalles cuidados', 'Ligero y espacioso'],
+  },
+  {
+    code: 'C5',
+    categoryId: 'estuches-de-maquillaje',
+    title: 'Portamaquillaje liso negro',
+    description: 'Hice este neceser de maquillaje con mis manos, la creé a mano con tela negra elegante y espaciosa. Mide 24 cm de largo, super amplio para guardar brochas, paletas y cosméticos grandes.',
+    shortDescription: 'Neceser maxi de 24 cm en negro elegante. Gran capacidad para brochas y cosméticos.',
+    stock: true,
+    rating: 5.0,
+    reviewsCount: 31,
+    soldCount: 54,
+    badge: 'EDICIÓN CLÁSICA',
+    priceRetailOriginal: 9500,
+    priceRetail: 8000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 21600, unitPrice: 7200, label: '3 unidades' },
+      tier10: { units: 10, total: 68000, unitPrice: 6800, label: '10 unidades' },
+      souvenir20: { units: 20, total: 128000, unitPrice: 6400, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 180000, unitPrice: 6000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/C5/cover.png',
+      '/products/C5/photo-1.jpg',
+      '/products/C5/photo-2.jpg',
+    ],
+    video: '/products/C5/video.mp4',
+    dimensions: '24 cm x 14 cm x 9 cm',
+    features: ['Gran tamaño 24 cm', 'Video demostrativo artesanal', 'Soporta brochas completas', 'Color negro sobrio'],
+  },
+  {
+    code: 'C6',
+    categoryId: 'estuches-de-maquillaje',
+    title: 'Portamaquillaje liso azul marino',
+    description: 'Hice este neceser de maquillaje, la creé a mano con amor. Mide 24 cm de largo. Diseño liso azul marino sofisticado, lavable y con gran capacidad.',
+    shortDescription: 'Neceser amplio de 24 cm en azul marino sofisticado con video de confección artesanal.',
+    stock: true,
+    rating: 4.9,
+    reviewsCount: 17,
+    soldCount: 23,
+    badge: 'NUEVO TONO',
+    priceRetailOriginal: 9500,
+    priceRetail: 8000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 21600, unitPrice: 7200, label: '3 unidades' },
+      tier10: { units: 10, total: 68000, unitPrice: 6800, label: '10 unidades' },
+      souvenir20: { units: 20, total: 128000, unitPrice: 6400, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 180000, unitPrice: 6000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/C6/cover.jpg',
+      '/products/C6/photo-1.jpg',
+      '/products/C6/photo-2.jpg',
+    ],
+    video: '/products/C6/video.mp4',
+    dimensions: '24 cm x 14 cm x 9 cm',
+    features: ['Tamaño amplio 24 cm', 'Video de muestra real', 'Azul noche refinado', 'Fácil lavado'],
+  },
+
+  // --- Bolsos diarios ---
+  {
+    code: 'A1',
+    categoryId: 'bolsos-diarios',
+    title: 'Bolso diario Negro liso',
+    description: 'Hice este bolso pensando en acompañarte todos los días! La creé con mis propias manos, cuidando cada detalle para que sea súper cómodo y práctico. Mide 30 cm de ancho por 35 cm de alto, el tamaño ideal para llevar tu rutina completa, trabajo, estudio o paseos. Manijas reforzadas en hombro.',
+    shortDescription: 'Bolso diario 30x35 cm en negro clásico. 100% hecho a mano, amplio y ultrarresistente.',
+    stock: true,
+    rating: 5.0,
+    reviewsCount: 46,
+    soldCount: 88,
+    badge: 'TOP VENTAS',
+    priceRetailOriginal: 17500,
+    priceRetail: 15000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 40500, unitPrice: 13500, label: '3 unidades' },
+      tier10: { units: 10, total: 127500, unitPrice: 12750, label: '10 unidades' },
+      souvenir20: { units: 20, total: 240000, unitPrice: 12000, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 337500, unitPrice: 11250, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/A1/cover.png',
+      '/products/A1/photo-1.jpg',
+      '/products/A1/photo-2.jpg',
+      '/products/A1/photo-3.jpg',
+    ],
+    video: '/products/A1/video.mp4',
+    dimensions: '30 cm x 35 cm (Asas: 28 cm caída)',
+    features: ['100% hecho a mano por Nelly', 'Manijas reforzadas', 'Capacidad para notebook o cuadernos', 'Video demostrativo'],
+  },
+  {
+    code: 'A2',
+    categoryId: 'bolsos-diarios',
+    title: 'Bolso diario con bolsillo',
+    description: 'Diseñé este bolso con bolsillo para acompañarte todos los días! La creé 100% a mano con mucho amor. Mide 35 cm de ancho por 35 cm de alto, súper cómodo para tu rutina y un regalo hermoso para alguien especial. Cuenta con un bolsillo frontal de acceso rápido para celular, llaves o billetera.',
+    shortDescription: 'Bolso diario 35x35 cm con bolsillo frontal. Máxima comodidad para todos los días.',
+    stock: true,
+    rating: 5.0,
+    reviewsCount: 39,
+    soldCount: 62,
+    badge: 'RECOMENDADO',
+    priceRetailOriginal: 23500,
+    priceRetail: 20000,
+    wholesaleTiers: {
+      tier3: { units: 3, total: 54000, unitPrice: 18000, label: '3 unidades' },
+      tier10: { units: 10, total: 170000, unitPrice: 17000, label: '10 unidades' },
+      souvenir20: { units: 20, total: 320000, unitPrice: 16000, label: 'Souvenir 20 unidades' },
+      souvenir30: { units: 30, total: 450000, unitPrice: 15000, label: 'Souvenir 30 unidades' },
+      souvenirPlus: { units: 'más de 30', total: 'Cotizar', unitPrice: 'A convenir', label: 'Souvenir más de 30 unidades' },
+    },
+    images: [
+      '/products/A2/cover.jpg',
+      '/products/A2/photo-1.jpg',
+      '/products/A2/photo-2.jpg',
+      '/products/A2/photo-3.jpg',
+    ],
+    video: '/products/A2/video.mp4',
+    dimensions: '35 cm x 35 cm (Asas reforzadas)',
+    features: ['Bolsillo frontal de acceso rápido', 'Confección 100% manual', 'Costuras dobles', 'Video en vivo'],
+  },
+];
+
+export function formatPrice(amount) {
+  if (typeof amount !== 'number') return amount;
+  return `$${amount.toLocaleString('es-AR')}`;
+}
+
+export function buildWhatsAppRetailUrl({ product, customerName, paymentMethod, deliveryMethod }) {
+  const message = [
+    `¡Hola Nelly! Soy ${customerName.trim()}, estuve viendo la tienda online NellyKit y me gustaría comprar este producto:`,
+    ``,
+    `*Producto:* ${product.title} (Código: ${product.code})`,
+    `*Precio:* ${formatPrice(product.priceRetail)}`,
+    `*Medio de pago preferido:* ${paymentMethod}`,
+    `*Forma de entrega:* ${deliveryMethod}`,
+    ``,
+    `¿Podrías confirmarme disponibilidad y plazo de entrega? ¡Muchas gracias!`,
+  ].join('\n');
+
+  return `https://wa.me/${BRAND_INFO.whatsappNumberOnly}?text=${encodeURIComponent(message)}`;
+}
+
+export function buildWhatsAppWholesaleUrl({ product, tierKey, customerName, paymentMethod, deliveryMethod }) {
+  const tier = product.wholesaleTiers[tierKey] || product.wholesaleTiers.tier3;
+  const priceDisplay = typeof tier.total === 'number' ? formatPrice(tier.total) : tier.total;
+  const unitDisplay = typeof tier.unitPrice === 'number' ? `${formatPrice(tier.unitPrice)} c/u` : tier.unitPrice;
+
+  const message = [
+    `¡Hola Nelly! Soy ${customerName.trim()}, me gustaría encargar un pedido por MAYOR en NellyKit:`,
+    ``,
+    `*Producto:* ${product.title} (Código: ${product.code})`,
+    `*Cantidad encargada:* ${tier.label} (${unitDisplay})`,
+    `*Total estimado:* ${priceDisplay}`,
+    `*Medio de pago:* ${paymentMethod}`,
+    `*Forma de retiro / envío:* ${deliveryMethod}`,
+    ``,
+    `Ya revisé los términos (seña del 50% y saldo antes de entrega). Aguardo tu confirmación de tiempos de confección y stock. ¡Gracias!`,
+  ].join('\n');
+
+  return `https://wa.me/${BRAND_INFO.whatsappNumberOnly}?text=${encodeURIComponent(message)}`;
+}
+
+export function buildWhatsAppResellerLeadUrl({ name, email, salesChannel, coverageZone }) {
+  const message = [
+    `¡Hola! Soy ${name.trim()}, me gustaría inscribirme en la lista de espera para revender los productos de NellyKit.`,
+    ``,
+    `*Mis Datos:*`,
+    `- Nombre: ${name.trim()}`,
+    `- Email: ${email.trim()}`,
+    `- Modalidad de venta: ${salesChannel}`,
+    `- Zona de cobertura / Localidad: ${coverageZone.trim()}`,
+    ``,
+    `Quedo a la espera de recibir el catálogo mayorista y la lista de precios de reventa. ¡Muchas gracias!`,
+  ].join('\n');
+
+  return `https://wa.me/${BRAND_INFO.whatsappNumberOnly}?text=${encodeURIComponent(message)}`;
+}

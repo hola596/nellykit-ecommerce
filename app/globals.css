@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-obsidian: #08080a;
+  --color-onyx: #0f1015;
+  --color-carbon: #16181f;
+  --color-graphite: #22242c;
+  --color-slate: #2e313b;
+  --color-ash: #636777;
+  --color-fog: #9ea2b3;
+  --color-mist: #b8bcc9;
+  --color-silver: #d6d8e1;
+  --color-bone: #f1f2f6;
+  --color-paper-white: #ffffff;
+  --color-copper: #cc9166;
+  --color-brand-red: #e53935;
+  --color-gilded: #ae9357;
+
+  /* Theme-specific tokens */
+  --bg-page: #08080a;
+  --bg-card: #0f1015;
+  --bg-surface: #16181f;
+  --border-subtle: #22242c;
+  --border-focus: #cc9166;
+  --text-primary: #ffffff;
+  --text-secondary: #9ea2b3;
+  --text-muted: #636777;
+}
+
+html.light {
+  --bg-page: #faf9f6;
+  --bg-card: #ffffff;
+  --bg-surface: #f3f2ee;
+  --border-subtle: #e5e4de;
+  --border-focus: #cc9166;
+  --text-primary: #121317;
+  --text-secondary: #5a5d6a;
+  --text-muted: #8b8f9e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(145, 148, 161, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 145, 102, 0.5);
+}
+
+/* Utility to hide scrollbars for stories & galleries while keeping scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Scroll snap for mobile swipe */
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* Instagram story gradient ring animation */
+@keyframes storyPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(229, 57, 53, 0.4));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 10px rgba(204, 145, 102, 0.7));
+  }
+}
+
+.story-ring-active {
+  background: linear-gradient(135deg, #e53935 0%, #cc9166 50%, #ae9357 100%);
+  padding: 2.5px;
+  border-radius: 9999px;
+  animation: storyPulse 3s infinite ease-in-out;
+}
+
+.story-ring-default {
+  background: linear-gradient(135deg, rgba(229, 57, 53, 0.6) 0%, rgba(204, 145, 102, 0.5) 100%);
+  padding: 2px;
+  border-radius: 9999px;
+}
+
+/* WCAG AAA Accessible focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #cc9166;
+  outline-offset: 2px;
+}
+
+/* Backdrop blur support */
+.glass-panel-dark {
+  background: rgba(15, 16, 21, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
