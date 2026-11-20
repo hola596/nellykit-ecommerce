@@ -34,6 +34,10 @@ export const metadata = {
   authors: [{ name: 'Nelly' }],
   creator: 'NellyKit',
   publisher: 'NellyKit',
+  icons: {
+    icon: '/brand/NellyKit.png',
+    apple: '/brand/NellyKit.png',
+  },
   robots: {
     index: true,
     follow: true,
@@ -56,8 +60,8 @@ export const metadata = {
     images: [
       {
         url: '/brand/NellyKit.png',
-        width: 800,
-        height: 600,
+        width: 1580,
+        height: 900,
         alt: `${BRAND_INFO.name} Logo`,
       },
     ],

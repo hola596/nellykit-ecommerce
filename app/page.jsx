@@ -235,11 +235,11 @@ export default function Home() {
 
   // Screen 2: Central Catalog Experience
   return (
-    <div className="min-h-screen flex flex-col bg-obsidian text-stone-100 transition-colors animate-fade-in relative selection:bg-copper selection:text-white">
+    <div className="min-h-[100dvh] flex flex-col bg-[#faf9f6] text-stone-900 dark:bg-obsidian dark:text-stone-100 transition-colors animate-fade-in relative selection:bg-copper selection:text-white">
       {/* Toast Notification */}
       <Toast message={toastMessage} />
 
-      {/* Sticky Header with Mode Switcher & Dark/Light Toggle */}
+      {/* Sticky Header with Protagonist Logo, Mode Switcher & Dark/Light Toggle */}
       <Header
         mode={mode}
         onToggleMode={(newMode) => {
@@ -257,11 +257,11 @@ export default function Home() {
       />
 
       {/* Mode Banner Indicator */}
-      <div className="w-full bg-stone-900/60 dark:bg-carbon/50 border-b border-stone-800/60 dark:border-graphite py-2 px-4 text-center">
-        <p className="text-[11px] text-stone-300 dark:text-fog font-medium">
+      <div className="w-full bg-stone-100/90 dark:bg-carbon/60 border-b border-stone-200 dark:border-graphite py-2 px-4 text-center">
+        <p className="text-[11px] sm:text-xs text-stone-600 dark:text-fog font-medium">
           {mode === 'retail' ? (
             <span>
-              Mostrando <strong className="text-copper">precios por menor</strong> para compra individual. ¿Querés comprar por cantidad? Cambiá arriba a <strong className="text-white">Por Mayor</strong>.
+              Mostrando <strong className="text-copper-dark dark:text-copper">precios por menor</strong> para compra individual. ¿Querés comprar por cantidad? Cambiá arriba a <strong className="text-stone-900 dark:text-white">Por Mayor</strong>.
             </span>
           ) : (
             <span>
@@ -272,7 +272,7 @@ export default function Home() {
       </div>
 
       {/* Main Catalog Body */}
-      <main className="flex-1 w-full max-w-md mx-auto sm:max-w-2xl md:max-w-4xl px-3 sm:px-6 py-6 space-y-10">
+      <main className="flex-1 w-full max-w-md mx-auto sm:max-w-2xl md:max-w-4xl px-3 sm:px-6 py-5 sm:py-6 space-y-8 sm:space-y-10">
         {categories.map((category) => {
           const categoryProducts = productsByCategory[category.id] || [];
           if (categoryProducts.length === 0) return null;
@@ -286,12 +286,12 @@ export default function Home() {
             <section
               key={category.id}
               id={category.id}
-              className="scroll-mt-32 space-y-4 animate-fade-in"
+              className="scroll-mt-36 space-y-4 animate-fade-in"
             >
               {/* Category Header with Anchor */}
-              <div className="flex items-center justify-between border-b border-stone-800/80 dark:border-graphite pb-2.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-copper/15 text-copper flex items-center justify-center">
+              <div className="flex items-center justify-between border-b border-stone-200 dark:border-graphite pb-2.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-copper/15 text-copper-dark dark:text-copper flex items-center justify-center flex-shrink-0">
                     {category.id.includes('maquillaje') ? (
                       <Sparkles className="w-4 h-4" />
                     ) : category.id.includes('portataza') ? (
@@ -301,20 +301,20 @@ export default function Home() {
                     )}
                   </div>
                   <div>
-                    <h2 className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">
+                    <h2 className="font-serif text-lg sm:text-xl font-bold text-stone-900 dark:text-white tracking-tight">
                       {category.name}
                     </h2>
-                    <p className="text-[11px] text-stone-400 dark:text-fog line-clamp-1">
+                    <p className="text-[11px] text-stone-600 dark:text-fog line-clamp-1">
                       {category.description}
                     </p>
                   </div>
                 </div>
-                <span className="text-xs font-mono text-copper font-medium">
+                <span className="text-xs font-mono text-copper-dark dark:text-copper font-semibold flex-shrink-0">
                   {categoryProducts.length} modelos
                 </span>
               </div>
 
-              {/* 2 PRODUCTS PER ROW GRID (MOBILE FIRST MATCHING REFERENCE DESIGN) */}
+              {/* 2 PRODUCTS PER ROW GRID (MOBILE FIRST) */}
               <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
                 {categoryProducts.map((product) => (
                   <ProductCard
@@ -336,7 +336,7 @@ export default function Home() {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-20 right-4 z-40 w-10 h-10 rounded-full bg-stone-900/90 dark:bg-carbon/90 border border-stone-800 dark:border-graphite text-copper flex items-center justify-center shadow-luxury hover:scale-110 active:scale-95 transition-all"
+          className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 z-40 w-11 h-11 rounded-full bg-white/95 dark:bg-carbon/95 border border-stone-200 dark:border-graphite text-copper-dark dark:text-copper flex items-center justify-center shadow-luxury-light dark:shadow-luxury hover:scale-110 active:scale-95 transition-all"
           aria-label="Volver arriba"
         >
           <ArrowUp className="w-5 h-5" />
@@ -355,6 +355,7 @@ export default function Home() {
           product={viewingProduct}
           mode={mode}
           selectedTier={selectedTier}
+          onSelectTier={setSelectedTier}
           onClose={() => setViewingProduct(null)}
           onOrderProduct={handleOrderProduct}
           onToast={triggerToast}
