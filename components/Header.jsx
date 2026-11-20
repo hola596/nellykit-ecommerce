@@ -36,7 +36,7 @@ export default function Header({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-obsidian/92 backdrop-blur-md border-b border-stone-200 dark:border-graphite safe-top transition-colors shadow-sm dark:shadow-none">
+    <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-obsidian/95 backdrop-blur-md border-b border-stone-200 dark:border-graphite safe-top transition-colors shadow-sm dark:shadow-none">
       <div className="max-w-4xl w-full mx-auto px-3 sm:px-6">
         {/* Top Row: Protagonist Logo + Desktop Switcher + Touch Actions */}
         <div className="h-16 sm:h-[76px] flex items-center justify-between gap-2">
