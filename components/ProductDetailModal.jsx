@@ -31,7 +31,12 @@ export default function ProductDetailModal({
 
   if (!product) return null;
 
-  const images = product.images || [];
+  const images =
+    product.images && product.images.length > 0
+      ? product.images
+      : ['/brand/NellyKit-logo-blanco.png'];
+  const activeImage = images[activeMediaIndex] || images[0] || '/brand/NellyKit-logo-blanco.png';
+  const isBrandPlaceholder = activeImage.startsWith('/brand/');
   const hasVideo = !!product.video;
   const currentWholesale = product.wholesaleTiers ? product.wholesaleTiers[selectedTier] : null;
 
@@ -39,7 +44,7 @@ export default function ProductDetailModal({
   const shareUrl =
     typeof window !== 'undefined'
       ? `${window.location.origin}/#prod-${product.code}`
-      : `https://nellykit.vercel.app/#prod-${product.code}`;
+      : `https://nellykit-ecommerce.vercel.app/#prod-${product.code}`;
 
   const handleCopyLink = async () => {
     try {
@@ -102,13 +107,19 @@ export default function ProductDetailModal({
           ) : (
             <div className="relative w-full h-full">
               <Image
-                src={images[activeMediaIndex] || images[0]}
+                src={activeImage}
                 alt={product.title}
                 fill
                 sizes="(max-width: 640px) 100vw, 500px"
-                className="object-cover"
+                className={isBrandPlaceholder ? 'object-contain p-10' : 'object-cover'}
                 priority
               />
+
+              {isBrandPlaceholder && !isVideoPlaying && (
+                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-copper/40 text-copper text-[10px] font-semibold uppercase tracking-wider">
+                  Foto real próximamente
+                </div>
+              )}
 
               {hasVideo && (
                 <button

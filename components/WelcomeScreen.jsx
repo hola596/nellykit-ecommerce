@@ -72,7 +72,7 @@ export default function WelcomeScreen({ onSelectMode }) {
           Artesanías con Amor
         </h1>
         <p className="text-sm text-stone-400 dark:text-fog leading-relaxed max-w-xs mx-auto">
-          Confección 100% manual de portamaquillajes y bolsos diarios. Piezas únicas pensadas para acompañarte todos los días.
+          Confección 100% manual de portamaquillajes, bolsos diarios y portatazas. Piezas únicas pensadas para acompañarte todos los días.
         </p>
       </header>
 

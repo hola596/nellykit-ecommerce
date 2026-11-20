@@ -16,7 +16,7 @@ export default function ProductCard({
   const [wholesaleTier, setWholesaleTier] = useState('tier3'); // Default 3 unidades
   const scrollContainerRef = useRef(null);
 
-  const images = product.images && product.images.length > 0 ? product.images : ['/brand/NellyKit.png'];
+  const images = product.images && product.images.length > 0 ? product.images : ['/brand/NellyKit-logo-blanco.png'];
   const hasMultipleImages = images.length > 1;
 
   // Handle horizontal swipe inside the card
@@ -64,21 +64,26 @@ export default function ProductCard({
           onScroll={handleScroll}
           className="flex w-full h-full overflow-x-auto snap-x-mandatory no-scrollbar"
         >
-          {images.map((imgSrc, idx) => (
-            <div
-              key={idx}
-              className="w-full h-full flex-shrink-0 snap-center relative"
-            >
-              <Image
-                src={imgSrc}
-                alt={`${product.title} - Foto ${idx + 1}`}
-                fill
-                sizes="(max-width: 640px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                priority={product.code === 'C1' || product.code === 'A1'}
-              />
-            </div>
-          ))}
+          {images.map((imgSrc, idx) => {
+            const isBrandPlaceholder = imgSrc.startsWith('/brand/');
+            return (
+              <div
+                key={idx}
+                className="w-full h-full flex-shrink-0 snap-center relative"
+              >
+                <Image
+                  src={imgSrc}
+                  alt={`${product.title} - Foto ${idx + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                  className={`${
+                    isBrandPlaceholder ? 'object-contain p-6' : 'object-cover'
+                  } transition-transform duration-500 group-hover:scale-105`}
+                  priority={product.code === 'C1' || product.code === 'A1'}
+                />
+              </div>
+            );
+          })}
         </div>
 
         {/* Video Available Badge */}
@@ -86,6 +91,13 @@ export default function ProductCard({
           <div className="absolute bottom-2 left-2 z-10 px-1.5 py-0.5 rounded-md bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-semibold flex items-center gap-1">
             <Play className="w-2.5 h-2.5 fill-white text-white" />
             <span>VIDEO</span>
+          </div>
+        )}
+
+        {/* Brand Placeholder Badge */}
+        {!product.video && images[activeImageIndex]?.startsWith('/brand/') && (
+          <div className="absolute bottom-2 left-2 z-10 px-1.5 py-0.5 rounded-md bg-black/70 backdrop-blur-md border border-copper/30 text-copper text-[9px] font-semibold uppercase tracking-wide">
+            Foto próximamente
           </div>
         )}
 

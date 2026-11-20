@@ -116,10 +116,14 @@ export default function OrderModal({
         <div className="p-4 bg-stone-950/40 dark:bg-carbon/40 border-b border-stone-800/60 dark:border-graphite flex items-center gap-3">
           <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-stone-900 dark:bg-carbon border border-stone-800 flex-shrink-0">
             <Image
-              src={product.images?.[0] || '/brand/NellyKit.png'}
+              src={product.images?.[0] || '/brand/NellyKit-logo-blanco.png'}
               alt={product.title}
               fill
-              className="object-cover"
+              className={
+                (product.images?.[0] || '/brand/NellyKit-logo-blanco.png').startsWith('/brand/')
+                  ? 'object-contain p-1.5'
+                  : 'object-cover'
+              }
             />
           </div>
           <div className="flex-1 min-w-0">

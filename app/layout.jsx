@@ -15,10 +15,10 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://nellykit.vercel.app'),
-  title: `${BRAND_INFO.name} | Tienda Online Artesanal - Bolsos y Portamaquillajes`,
+  metadataBase: new URL('https://nellykit-ecommerce.vercel.app'),
+  title: `${BRAND_INFO.name} | Tienda Online Artesanal - Bolsos, Portamaquillajes y Portatazas`,
   description:
-    'Tienda online oficial de NellyKit. Productos confeccionados 100% a mano con amor: estuches de maquillaje, portacosméticos y bolsos diarios. Venta por menor, mayor y souvenirs.',
+    'Tienda online oficial de NellyKit. Productos confeccionados 100% a mano con amor: estuches de maquillaje, portacosméticos, bolsos diarios y portatazas. Venta por menor, mayor y souvenirs.',
   keywords: [
     'NellyKit',
     'artesanías',
@@ -26,6 +26,7 @@ export const metadata = {
     'portamaquillaje',
     'neceser',
     'bolsos diarios',
+    'portatazas',
     'souvenirs',
     'compra por mayor',
     'Argentina',
@@ -47,10 +48,10 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_AR',
-    url: 'https://nellykit.vercel.app',
+    url: 'https://nellykit-ecommerce.vercel.app',
     title: `${BRAND_INFO.name} | ${BRAND_INFO.tagline}`,
     description:
-      'Descubrí portamaquillajes y bolsos hechos a mano con dedicación. Precios por menor, mayor y souvenirs para eventos.',
+      'Descubrí portamaquillajes, bolsos diarios y portatazas hechos a mano con dedicación. Precios por menor, mayor y souvenirs para eventos.',
     siteName: BRAND_INFO.name,
     images: [
       {
@@ -85,7 +86,7 @@ const jsonLd = {
   '@type': 'Store',
   name: BRAND_INFO.name,
   description: BRAND_INFO.tagline,
-  image: 'https://nellykit.vercel.app/brand/NellyKit.png',
+  image: 'https://nellykit-ecommerce.vercel.app/brand/NellyKit.png',
   telephone: BRAND_INFO.whatsapp,
   priceRange: '$$',
   address: {
@@ -110,6 +111,14 @@ const jsonLd = {
         '@type': 'Product',
         name: 'Bolsos Diarios Hechos a Mano',
         description: 'Bolsos amplios y confortables para todos los días',
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Product',
+        name: 'Portatazas Artesanales',
+        description: 'Portatazas confeccionados 100% a mano ideales para regalar o souvenirs',
       },
     },
   ],

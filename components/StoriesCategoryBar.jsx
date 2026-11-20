@@ -1,12 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { Sparkles, ShoppingBag } from 'lucide-react';
+import { Sparkles, ShoppingBag, Coffee } from 'lucide-react';
 
 export default function StoriesCategoryBar({ categories, activeCategory, onSelectCategory }) {
   const getCategoryIcon = (id) => {
     if (id.includes('maquillaje') || id.includes('portacosmetico')) {
       return <Sparkles className="w-3.5 h-3.5" />;
+    }
+    if (id.includes('portataza') || id.includes('taza')) {
+      return <Coffee className="w-3.5 h-3.5" />;
     }
     return <ShoppingBag className="w-3.5 h-3.5" />;
   };
@@ -77,7 +80,9 @@ export default function StoriesCategoryBar({ categories, activeCategory, onSelec
                         alt={cat.name}
                         fill
                         sizes="56px"
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                        className={`${
+                          cat.avatar.startsWith('/brand/') ? 'object-contain p-1.5' : 'object-cover'
+                        } group-hover:scale-110 transition-transform duration-300`}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-copper">

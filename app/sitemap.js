@@ -1,7 +1,7 @@
 import { INITIAL_PRODUCTS, INITIAL_CATEGORIES } from '../data/catalog';
 
 export default function sitemap() {
-  const baseUrl = 'https://nellykit.vercel.app';
+  const baseUrl = 'https://nellykit-ecommerce.vercel.app';
 
   const productUrls = INITIAL_PRODUCTS.map((p) => ({
     url: `${baseUrl}/#prod-${p.code}`,

@@ -70,7 +70,7 @@ export default function Footer({ onOpenContact }) {
             {openSection === 'about' && (
               <div className="px-3.5 pb-4 text-xs text-stone-300 dark:text-bone leading-relaxed border-t border-stone-800/40 dark:border-graphite/40 pt-3">
                 <p>
-                  ¡Hola! Soy Nelly. Cada uno de los portamaquillajes y bolsos diarios que ves en esta tienda fue ideado y confeccionado por mí con dedicación artesanal. Elijo telas nobles, cierres resistentes y apliques que perduren en tu rutina diaria.
+                  ¡Hola! Soy Nelly. Cada uno de los portamaquillajes, bolsos diarios y portatazas que ves en esta tienda fue ideado y confeccionado por mí con dedicación artesanal. Elijo telas nobles, cierres resistentes y apliques que perduren en tu rutina diaria.
                 </p>
                 <p className="mt-2">
                   Trabajo de manera personalizada tanto para pedidos individuales como para lotes mayoristas y recuerdos/souvenirs para eventos especiales.

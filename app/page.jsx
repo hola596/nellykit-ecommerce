@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import WelcomeScreen from '../components/WelcomeScreen';
 import LoadingTransition from '../components/LoadingTransition';
 import Header from '../components/Header';
@@ -16,7 +16,44 @@ import {
   INITIAL_CATEGORIES,
   INITIAL_PRODUCTS,
 } from '../data/catalog';
-import { Sparkles, ShoppingBag, ArrowUp } from 'lucide-react';
+import { Sparkles, ShoppingBag, Coffee, ArrowUp } from 'lucide-react';
+
+function formatSheetTitle(rawTitle, categoryId, localMatch) {
+  let cleaned = String(rawTitle || '').trim();
+  if (!cleaned) return localMatch?.title || '';
+
+  cleaned = cleaned
+    .replace(/\bcorcilar\b/gi, 'circular')
+    .replace(/\blisto negro\b/gi, 'liso negro');
+
+  if (categoryId === 'portatazas' && !/portataza/i.test(cleaned)) {
+    cleaned = `Portataza ${cleaned}`;
+  }
+
+  return cleaned || localMatch?.title || String(rawTitle || '');
+}
+
+function formatSheetDescription(rawDesc, categoryId, code, localMatch) {
+  let cleaned = String(rawDesc || '')
+    .trim()
+    .replace(/^["“”]+|["“”]+$/g, '')
+    .replace(/(^|\s)Lo creí(?=$|[\s.,!?;:])/gi, '$1Lo creé')
+    .trim();
+
+  if (!cleaned) {
+    return localMatch?.description || '';
+  }
+
+  if (categoryId === 'portatazas' && /este bolso/i.test(cleaned) && localMatch?.description) {
+    return localMatch.description;
+  }
+
+  if (String(code || '').toUpperCase() === 'A3' && /bolso con bolsillo/i.test(cleaned) && localMatch?.description) {
+    return localMatch.description;
+  }
+
+  return cleaned;
+}
 
 export default function Home() {
   const [screen, setScreen] = useState('welcome'); // 'welcome' | 'loading' | 'catalog'
@@ -53,36 +90,83 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Dynamic Google Sheets sync in background
+  const [sheetApiUrl, setSheetApiUrl] = useState('');
+
+  // Load configured sheet URL from env or localStorage
   useEffect(() => {
-    const sheetApiUrl = process.env.NEXT_PUBLIC_SHEET_API_URL;
-    if (sheetApiUrl) {
-      fetch(sheetApiUrl)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && data.success && Array.isArray(data.products)) {
-            // Merge sheet products with local media assets
-            setProducts((prev) => {
-              const updated = data.products.map((p) => {
-                const localMatch = prev.find((lp) => lp.code === p.code);
-                return {
-                  ...p,
-                  images: localMatch?.images || p.images || ['/brand/NellyKit.png'],
-                  video: localMatch?.video || p.video || null,
-                  badge: localMatch?.badge || p.badge || null,
-                  rating: localMatch?.rating || 5.0,
-                  reviewsCount: localMatch?.reviewsCount || 10,
-                  soldCount: localMatch?.soldCount || 20,
-                  dimensions: localMatch?.dimensions || 'Medidas estándar artesanales',
-                };
-              });
-              return updated;
-            });
-          }
-        })
-        .catch(() => {});
+    try {
+      const stored = (
+        localStorage.getItem('nellykit_sheet_api_url') ||
+        process.env.NEXT_PUBLIC_SHEET_API_URL ||
+        ''
+      ).trim();
+      if (stored) {
+        setSheetApiUrl(stored);
+      }
+    } catch (e) {}
+  }, []);
+
+  // Sync function that fetches live data from Google Sheet silently in background
+  const syncWithSheet = useCallback(async (urlToFetch) => {
+    const targetUrl = String(urlToFetch || '').trim();
+    if (!targetUrl) return;
+
+    try {
+      const res = await fetch(targetUrl);
+      const data = await res.json();
+
+      if (data && data.success && Array.isArray(data.products)) {
+        // Sync Categories if new sheets were added
+        if (Array.isArray(data.categories) && data.categories.length > 0) {
+          setCategories(
+            data.categories.map((c) => {
+              const localCat = INITIAL_CATEGORIES.find((ic) => ic.id === c.id);
+              return {
+                id: c.id,
+                name: c.name,
+                shortName: localCat?.shortName || c.name,
+                avatar: localCat?.avatar || '/brand/NellyKit-logo-blanco.png',
+                description: localCat?.description || `Colección artesanal de ${c.name}`,
+              };
+            })
+          );
+        }
+
+        // Sync Products (updates prices, stock, titles, wholesale tiers in real time)
+        setProducts((prev) => {
+          return data.products.map((p) => {
+            const codeUpper = String(p.code || '').toLowerCase();
+            const localMatch = prev.find((lp) => lp.code.toLowerCase() === codeUpper);
+            const retailPrice = Number(p.priceRetail) || localMatch?.priceRetail || 8000;
+            return {
+              ...localMatch,
+              ...p,
+              title: formatSheetTitle(p.title, p.categoryId, localMatch),
+              description: formatSheetDescription(p.description, p.categoryId, p.code, localMatch),
+              priceRetail: retailPrice,
+              priceRetailOriginal: localMatch?.priceRetailOriginal || Math.round(retailPrice * 1.18),
+              images: localMatch?.images || ['/brand/NellyKit-logo-blanco.png'],
+              video: localMatch?.video || null,
+              badge: localMatch?.badge || (p.stock ? 'NUEVO' : null),
+              rating: localMatch?.rating || 5.0,
+              reviewsCount: localMatch?.reviewsCount || 10,
+              soldCount: localMatch?.soldCount || 15,
+              dimensions: localMatch?.dimensions || 'Medidas artesanales a medida',
+              wholesaleTiers: p.wholesaleTiers || localMatch?.wholesaleTiers,
+            };
+          });
+        });
+      }
+    } catch (err) {
+      // Keep local fallback catalog silently if network/endpoint fails
     }
   }, []);
+
+  useEffect(() => {
+    if (sheetApiUrl) {
+      syncWithSheet(sheetApiUrl);
+    }
+  }, [sheetApiUrl, syncWithSheet]);
 
   const triggerToast = (msg) => {
     setToastMessage(msg);
@@ -210,6 +294,8 @@ export default function Home() {
                   <div className="w-7 h-7 rounded-lg bg-copper/15 text-copper flex items-center justify-center">
                     {category.id.includes('maquillaje') ? (
                       <Sparkles className="w-4 h-4" />
+                    ) : category.id.includes('portataza') ? (
+                      <Coffee className="w-4 h-4" />
                     ) : (
                       <ShoppingBag className="w-4 h-4" />
                     )}
